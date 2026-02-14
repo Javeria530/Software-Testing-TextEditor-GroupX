@@ -160,4 +160,11 @@ public class EditorBO implements IEditorBO {
 		return db.segmentWords(text);
 	}
 
+	@Override
+	public void executeCommand(ICommand command) {
+		if (command != null) {
+			command.execute();
+		}
+	}
+
 }
