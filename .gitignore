@@ -1,0 +1,23 @@
+# Ignore JDK installs and zip files
+/jdk-*
+*.zip
+
+# Ignore compiled classes and logs
+/bin/**/*.class
+/logs/
+*.log
+
+# Ignore library jars (large binaries)
+/bin/*.jar
+
+# Ignore local config with credentials
+config.properties
+*.properties
+
+# IDE folders
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
