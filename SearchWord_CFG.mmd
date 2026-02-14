@@ -1,0 +1,54 @@
+flowchart TD
+  S([Start])
+  Init([init getFiles = new ArrayList<>()])
+  CheckLen{{"keyword.length() < 3 ?"}}
+  Throw([throw IllegalArgumentException])
+  DocsLoop((iterate docs))
+  PagesLoop((iterate doc.getPages()))
+  GetPage([pageContent = page.getPageContent()])
+  Contains{{"pageContent.contains(keyword) ?"}}
+  Split([words = pageContent.split<br/>&#40;\s+&#41;])
+  WordsLoop((for i = 0<br/>i < words.length<br/>i++))
+  Match{{"words[i].equalsIgnoreCase<br/>&#40;keyword&#41; ?"}}
+  PrefixCond{{"i > 0 ?"}}
+  PrefixYes([prefixWord = words[i-1]])
+  PrefixNo([prefixWord = ""])
+  Add([getFiles.add<br/>&#40;doc.getName() +<br/>&#34; - &#34; + prefixWord<br/>+ &#34; &#34; + keyword + &#34;...&#34;&#41;])
+  BreakWords([break<br/>exit words loop])
+  BreakPages([break<br/>exit pages loop])
+  End([return getFiles])
+
+  S --> Init
+  Init --> CheckLen
+  CheckLen -- true --> Throw
+  CheckLen -- false --> DocsLoop
+
+  DocsLoop --> PagesLoop
+  PagesLoop --> GetPage
+  GetPage --> Contains
+  Contains -- false --> PagesLoop
+  Contains -- true --> Split
+
+  Split --> WordsLoop
+  WordsLoop --> Match
+  Match -- false --> WordsLoop
+  Match -- true --> PrefixCond
+  PrefixCond -- true --> PrefixYes
+  PrefixCond -- false --> PrefixNo
+  PrefixYes --> Add
+  PrefixNo --> Add
+  Add --> BreakWords
+  BreakWords --> BreakPages
+  BreakPages --> DocsLoop
+
+  PagesLoop -->|pages exhausted| DocsLoop
+  DocsLoop -->|docs exhausted| End
+
+  style S fill:#e1f5e1,stroke:#333,stroke-width:2px
+  style Init fill:#b3e5fc,stroke:#333,stroke-width:2px
+  style CheckLen fill:#fff9c4,stroke:#333,stroke-width:2px
+  style Throw fill:#ffcccc,stroke:#333,stroke-width:2px
+  style Contains fill:#fff9c4,stroke:#333,stroke-width:2px
+  style Match fill:#fff9c4,stroke:#333,stroke-width:2px
+  style PrefixCond fill:#fff9c4,stroke:#333,stroke-width:2px
+  style End fill:#c8e6c9,stroke:#333,stroke-width:2px

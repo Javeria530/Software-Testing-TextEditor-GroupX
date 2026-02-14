@@ -1,0 +1,36 @@
+flowchart TD
+  S([Start])
+  Init([pageSize = 100<br/>pageNumber = 1<br/>pageContent = &#34;&#34;<br/>pages = new ArrayList])
+  EmptyCheck{{"fileContent == null ||<br/>fileContent.isEmpty() ?"}}
+  AddEmpty([pages.add<br/>&#40;new Pages&#40;0,0,<br/>pageNumber,pageContent&#41;&#41;])
+  ReturnEmpty([return pages])
+  ForLoop((for i = 0<br/>i < fileContent.length()<br/>i++))
+  Append([pageContent +=<br/>fileContent.charAt&#40;i&#41;])
+  PageCond{{"pageContent.length()<br/>== pageSize ||<br/>i == fileContent.length()-1 ?"}}
+  AddPage([pages.add&#40;new Pages<br/>&#40;0,0,pageNumber,pageContent&#41;&#41;])
+  IncPage([pageNumber++<br/>pageContent = &#34;&#34;])
+  AfterLoop([after loop])
+  Return([return pages])
+
+  S --> Init
+  Init --> EmptyCheck
+  EmptyCheck -- true --> AddEmpty
+  AddEmpty --> ReturnEmpty
+  EmptyCheck -- false --> ForLoop
+
+  ForLoop --> Append
+  Append --> PageCond
+  PageCond -- true --> AddPage
+  AddPage --> IncPage
+  IncPage --> ForLoop
+  PageCond -- false --> ForLoop
+
+  ForLoop -->|loop finished| AfterLoop
+  AfterLoop --> Return
+
+  style S fill:#e1f5e1,stroke:#333,stroke-width:2px
+  style Init fill:#b3e5fc,stroke:#333,stroke-width:2px
+  style EmptyCheck fill:#fff9c4,stroke:#333,stroke-width:2px
+  style PageCond fill:#fff9c4,stroke:#333,stroke-width:2px
+  style Return fill:#c8e6c9,stroke:#333,stroke-width:2px
+  style AddEmpty fill:#e0bee7,stroke:#333,stroke-width:2px
