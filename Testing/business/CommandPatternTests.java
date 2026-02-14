@@ -1,9 +1,13 @@
-package Testing.business;
+package business;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import bll.*;
+import bll.IEditorBO;
+import bll.ICommand;
+import bll.ImportCommand;
+import bll.ExportCommand;
+import bll.TransliterateCommand;
 import java.io.File;
 
 public class CommandPatternTests {

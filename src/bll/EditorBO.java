@@ -3,7 +3,6 @@ package bll;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import dal.IFacadeDAO;
 import dto.Documents;
-import dto.Pages;
 import pl.EditorPO;
 
 public class EditorBO implements IEditorBO {
