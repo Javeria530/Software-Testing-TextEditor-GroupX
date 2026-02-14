@@ -114,4 +114,9 @@ public class FacadeBO implements IFacadeBO {
 		return bo.segmentWords(text);
 	}
 
+	@Override
+	public void executeCommand(ICommand command) {
+		bo.executeCommand(command);
+	}
+
 }
