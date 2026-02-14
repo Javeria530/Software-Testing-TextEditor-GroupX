@@ -41,4 +41,6 @@ public interface IEditorBO {
 
 	Map<String, String> segmentWords(String text);
 
+	void executeCommand(ICommand command);
+
 }

@@ -13,12 +13,12 @@ import org.apache.logging.log4j.Logger;
 import bll.IEditorBO;
 
 public class FileImporter {
-	private static final Logger logger = LogManager.getLogger(EditorPO.class);
+    private static final Logger logger = LogManager.getLogger(EditorPO.class);
     private IEditorBO businessObj;
 
     public FileImporter(IEditorBO businessObj) {
         this.businessObj = businessObj;
-        
+
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
@@ -36,7 +36,9 @@ public class FileImporter {
             if (selectedFiles.length > 0) {
                 for (File selectedFile : selectedFiles) {
                     String fileName = selectedFile.getName();
-                    boolean isImport = businessObj.importTextFiles(selectedFile, fileName);
+                    bll.ImportCommand importCommand = new bll.ImportCommand(businessObj, selectedFile, fileName);
+                    businessObj.executeCommand(importCommand);
+                    boolean isImport = importCommand.getResult();
                     JOptionPane.showMessageDialog(null,
                             isImport ? fileName + " uploaded successfully!" : fileName + " failed to upload!");
                     logger.info(isImport ? fileName + " uploaded successfully!" : fileName + " failed to upload!");
