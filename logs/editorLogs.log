@@ -20,4 +20,11 @@
 2024-12-10 21:25:27.599 [AWT-EventQueue-0] INFO  pl.EditorPO - Do you want to delete the selected file?
 2024-12-10 21:25:40.338 [AWT-EventQueue-0] INFO  pl.EditorPO - TF-IDF Score for 'surah falaq.txt' is: 0.009627044174443686
 2024-12-10 21:25:45.280 [AWT-EventQueue-0] INFO  pl.EditorPO - TF-IDF Score for 'quran-simple.txt' is: 0.014417461355646866
+<<<<<<< HEAD
 2026-02-14 23:27:15.803 [AWT-EventQueue-0] ERROR pl.EditorPO - Could not Search, Please Enter at least 3 letter to search
+=======
+2026-02-14 18:08:27.727 [main] ERROR pl.EditorPO - No suitable driver found for jdbc:mariadb://localhost:3306/realeditor
+2026-02-14 18:08:58.616 [AWT-EventQueue-0] INFO  pl.EditorPO - Do you want to delete the selected file?
+2026-02-14 21:13:53.121 [AWT-EventQueue-0] ERROR pl.EditorPO - Cannot invoke "java.sql.Connection.rollback()" because "this.conn" is null
+2026-02-14 21:13:55.373 [AWT-EventQueue-0] INFO  pl.EditorPO - File creation failed!
+>>>>>>> origin/main
